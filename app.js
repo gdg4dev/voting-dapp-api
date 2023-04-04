@@ -10,7 +10,7 @@ app.get('/token/:tokenAddr/user/:userAddr/amount/:tokenAmount', (req,res) => {
         result: false
     }
     const {tokenAddr, userAddr, tokenAmount} = req.params
-
+console.log(`https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=${tokenAddr}&address=${userAddr}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`)
     axios.get(`https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=${tokenAddr}&address=${userAddr}&tag=latest&apikey=${process.env.ETHERSCAN_API_KEY}`)
     .then((d) => {
         if (d.data.result/1000000000000000000 >= tokenAmount){
